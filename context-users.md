@@ -14,6 +14,7 @@ Two types of users share one platform:
 - Generates invoices and bills
 - Tracks payments and udhaar (credit owed)
 - Manages which retailers are linked to them
+- manage orders
 
 **Retailer (Shopkeeper)** — A small shop owner who:
 - Browses their linked supplier's product catalogue
@@ -27,14 +28,17 @@ Two types of users share one platform:
 
 ## TECH STACK
 
-- Next.js 15 or after App Router
+- Next.js latest
 - Tailwind CSS
 - Supabase (Auth + PostgreSQL + Realtime)
-- Zustand for state
+- Zustand for state Management
 
 ---
 
-## DATABASE SCHEMA (already live in Supabase)
+## DATABASE SCHEMA (to be created in Supabase — Phase 1)
+
+NOTE: The Supabase project exists but is empty. The schema below is
+created in Phase 1 via migrations before any UI is wired to real data.
 
 Tables: profiles, wholesalers, retailers, wholesaler_retailer, 
 products, orders, order_items, invoices, udhaar, stock_tracker
@@ -56,6 +60,11 @@ through both authenticated portals.
 ---
 
 ### PAGE 1 — LANDING PAGE (/)
+
+NOTE: The landing page is a custom, minimalistic, on-brand design (teal/amber)
+using a reference hero image (webp) placed in parchai/public/. The embedded
+third-party reference components below (animated canvas hero, generic customers
+table, DIcons) are NOT used; they are kept only as historical reference.
 
 Design a conversion-focused landing page for Pakistani wholesale/retail 
 businesses. The audience is small business owners — think kiryana stores, 
@@ -1438,8 +1447,9 @@ Think Notion meets a Pakistani bank app.
 ## CODE REQUIREMENTS
 
 - Use Next.js App Router file structure
-- Supabase client in lib/supabase/client.js and lib/supabase/server.js
-- Auth middleware.js protecting /wholesaler/* and /retailer/* routes
+- Project is TypeScript: use lib/supabase/client.ts and lib/supabase/server.ts (not .js)
+- Supabase clients via @supabase/ssr (cookie-based sessions)
+- Auth middleware.ts protecting /wholesaler/* and /retailer/* routes
 - Role check: after login read profiles.role and redirect accordingly
 - All Supabase queries use typed responses where possible
 - Realtime subscriptions in useEffect with proper cleanup
