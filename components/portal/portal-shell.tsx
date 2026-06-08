@@ -23,6 +23,7 @@ import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { BrandLogo } from "@/components/brand-logo";
+import { InstallAppButton } from "@/components/pwa/install-app-button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -145,7 +146,8 @@ export function PortalShell({
             <p className="text-sm font-semibold">{user.subtitle}</p>
           </div>
 
-          <div className="ml-auto">
+          <div className="ml-auto flex items-center gap-1">
+            <InstallAppButton />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center gap-2 rounded-full p-1 pr-3 transition-colors hover:bg-secondary">
